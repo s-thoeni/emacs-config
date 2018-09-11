@@ -6,7 +6,9 @@
 (require 'package)
 (require 'cl)
 (add-to-list 'package-archives
-              '("melpa" . "http://melpa.milkbox.net/packages/") t)
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives
+              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (package-initialize)
@@ -40,9 +42,7 @@
 ;; Jump around!
 (progn
   (require 'ace-jump-mode)                                                                                                                                                            
-    (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)                                                                                                                            
-    (define-key global-map (kbd "C-c C-c SPC") 'ace-jump-char-mode)                                                                                                                   
-    (define-key global-map (kbd "C-c C-c C-c SPC") 'ace-jump-line-mode)                                                                                                               
+  (define-key global-map (kbd "C-c C-c") 'ace-jump-mode)
 ) 
 
 ;; ace-window:
@@ -63,8 +63,51 @@
 ;; ECMA Script editing:
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (custom-set-variables
- '(js2-basic-offset 4))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
+ '(custom-safe-themes
+   (quote
+    ("f5512c02e0a6887e987a816918b7a684d558716262ac7ee2dd0437ab913eaec6" default)))
+ '(fci-rule-color "#383838")
+ '(js2-basic-offset 4)
+ '(nrepl-message-colors
+   (quote
+    ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
+ '(package-selected-packages
+   (quote
+    (markdown-mode latex-preview-pane matlab-mode zenburn-theme flx-ido ace-jump-mode)))
+ '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
+ '(vc-annotate-background "#2B2B2B")
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#BC8383")
+     (40 . "#CC9393")
+     (60 . "#DFAF8F")
+     (80 . "#D0BF8F")
+     (100 . "#E0CF9F")
+     (120 . "#F0DFAF")
+     (140 . "#5F7F5F")
+     (160 . "#7F9F7F")
+     (180 . "#8FB28F")
+     (200 . "#9FC59F")
+     (220 . "#AFD8AF")
+     (240 . "#BFEBBF")
+     (260 . "#93E0E3")
+     (280 . "#6CA0A3")
+     (300 . "#7CB8BB")
+     (320 . "#8CD0D3")
+     (340 . "#94BFF3")
+     (360 . "#DC8CC3"))))
+ '(vc-annotate-very-old-color "#DC8CC3"))
 (custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
 (setq js2-mode-hook
   '(lambda () (progn
@@ -81,3 +124,22 @@
 (setq-default indent-tabs-mode nil)
 
 (put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+
+(setq matlab-shell-command "c:/dev/matlab/matlabshell.cmd")
+(setq matlab-shell-command-switches '())
+(setq matlab-shell-echoes nil)
+
+
+;; spell checking
+(add-to-list 'exec-path "C:/Program Files (x86)/Aspell/bin/")
+(setq ispell-program-name "aspell")
+
+
+;; glsl-mode
+(add-to-list 'load-path "~/.emacs.d/glsl/")
+(autoload 'glsl-mode "glsl-mode" nil t)
+ (add-to-list 'auto-mode-alist '("\\.glsl\\'" . glsl-mode))
+ (add-to-list 'auto-mode-alist '("\\.vert\\'" . glsl-mode))
+ (add-to-list 'auto-mode-alist '("\\.frag\\'" . glsl-mode))
+ (add-to-list 'auto-mode-alist '("\\.geom\\'" . glsl-mode)
